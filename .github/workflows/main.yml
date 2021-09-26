@@ -1,14 +1,14 @@
-name: Docker Image CI
+name: Docker Deploy CI
 
 on:
   push:
     branches: [ master ]
-  pull_request:
-    branches: [ master ]
+  # pull_request:
+  #   branches: [ master ]
 
 jobs:
 
-  Build_and_Ship_Docker:
+  Docker_Ship_and_Deploy:
 
     runs-on: ubuntu-latest
 
