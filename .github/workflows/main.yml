@@ -15,8 +15,7 @@ jobs:
     steps:
     - name: Git checkout
       uses: actions/checkout@v2
-    - name: Build the Docker image
-      run: printenv
+    # - name: Build the Docker image
     #   run: docker build . --file Dockerfile --tag gradle-app:$(date +%s)
 
     - name: Publish Docker Image to GitHub Registry
@@ -40,6 +39,7 @@ jobs:
         # # path of ssh private key
         # key_path: # optional
         script: |
+          printenv
           docker login ${{ env.DOCKER_PATH }} --username ${{ env.DOCKER_USER }} --password ${{ secrets.DOCKER_REGISTRY }}
           docker run -d --name my-gradle-app -p:8080:8080 ${{ env.DOCKER_PATH }}/${{ env.GITHUB_REPOSITORY }}/gradle-app:latest
-        debug: true
+        #debug: true
