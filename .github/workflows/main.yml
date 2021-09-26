@@ -31,6 +31,7 @@ jobs:
       env:
         DOCKER_PATH: docker.pkg.github.com
         DOCKER_USER: kardanielyan
+        GITHUB_REPOSITORY: kardanielyan/spring-petclinic-kotlin
       with:
         # ssh host
         host: 54.69.231.212
@@ -39,7 +40,7 @@ jobs:
         # # path of ssh private key
         # key_path: # optional
         script: |
-          printenv
+          #printenv
           docker login ${{ env.DOCKER_PATH }} --username ${{ env.DOCKER_USER }} --password ${{ secrets.DOCKER_REGISTRY }}
           docker run -d --name my-gradle-app -p:8080:8080 ${{ env.DOCKER_PATH }}/${{ env.GITHUB_REPOSITORY }}/gradle-app:latest
         #debug: true
