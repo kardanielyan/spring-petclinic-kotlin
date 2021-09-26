@@ -13,6 +13,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag gradle-app:$(date +%s)
+    - name: Git checkout
+      uses: actions/checkout@v2
+    # - name: Build the Docker image
+    #   run: docker build . --file Dockerfile --tag gradle-app:$(date +%s)
+
+    - name: Publish Docker Image to GitHub Registry
+      uses: TilBlechschmidt/gp-docker-action@v0.2-alpha
+      with:
+        # GitHub token to push Docker image to GitHub Packages
+        github-token: ${{ DOCKER_REGISTRY }}
+        image-name: gradle-app
+        image-tag: latest
+        dockerfile-path: ./Dockerfile
