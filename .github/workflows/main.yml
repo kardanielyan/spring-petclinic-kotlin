@@ -15,7 +15,8 @@ jobs:
     steps:
     - name: Git checkout
       uses: actions/checkout@v2
-    # - name: Build the Docker image
+    - name: Build the Docker image
+      run: printenv
     #   run: docker build . --file Dockerfile --tag gradle-app:$(date +%s)
 
     - name: Publish Docker Image to GitHub Registry
