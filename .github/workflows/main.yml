@@ -29,6 +29,8 @@ jobs:
 
     - name: Deploy Docker by SSH
       uses: appleboy/ssh-action@v0.1.4
+      env:
+        DOCKER_PATH: docker.pkg.github.com
       with:
         # ssh host
         host: 54.69.231.212
@@ -36,5 +38,5 @@ jobs:
         key: ${{ secrets.SSH_KEY }}
         # # path of ssh private key
         # key_path: # optional
-        script: docker run -d --name my-gradle-app -p:8080:8080 gradle-app:latest
+        script: docker run -d --name my-gradle-app -p:8080:8080 ${{ env.DOCKER_PATH }}/${{ env.GITHUB_REPOSITORY }}/gradle-app:latest
         debug: true
