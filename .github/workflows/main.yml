@@ -36,5 +36,5 @@ jobs:
         key: ${{ secrets.SSH_KEY }}
         # # path of ssh private key
         # key_path: # optional
-        script: docker ps
+        script: docker run -d --name my-gradle-app -p:8080:8080 gradle-app:latest
         debug: true
