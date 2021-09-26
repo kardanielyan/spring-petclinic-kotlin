@@ -40,6 +40,6 @@ jobs:
         # # path of ssh private key
         # key_path: # optional
         script: |
-          docker login --username ${{ env.DOCKER_USER }} --password ${{ secrets.DOCKER_REGISTRY }}
+          docker login ${{ env.DOCKER_PATH }} --username ${{ env.DOCKER_USER }} --password ${{ secrets.DOCKER_REGISTRY }}
           docker run -d --name my-gradle-app -p:8080:8080 ${{ env.DOCKER_PATH }}/${{ env.GITHUB_REPOSITORY }}/gradle-app:latest
         debug: true
