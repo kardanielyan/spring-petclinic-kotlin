@@ -31,6 +31,7 @@ jobs:
       uses: appleboy/ssh-action@v0.1.4
       env:
         DOCKER_PATH: docker.pkg.github.com
+        DOCKER_USER: kardanielyan
       with:
         # ssh host
         host: 54.69.231.212
@@ -38,5 +39,7 @@ jobs:
         key: ${{ secrets.SSH_KEY }}
         # # path of ssh private key
         # key_path: # optional
-        script: docker run -d --name my-gradle-app -p:8080:8080 ${{ env.DOCKER_PATH }}/${{ env.GITHUB_REPOSITORY }}/gradle-app:latest
+        script: |
+          docker login --username ${{ env.DOCKER_USER }} --password ${{ secrets.DOCKER_REGISTRY }}
+          docker run -d --name my-gradle-app -p:8080:8080 ${{ env.DOCKER_PATH }}/${{ env.GITHUB_REPOSITORY }}/gradle-app:latest
         debug: true
