@@ -8,7 +8,7 @@ on:
 
 jobs:
 
-  build:
+  Build_and_Ship_Docker:
 
     runs-on: ubuntu-latest
 
@@ -25,4 +25,15 @@ jobs:
         github-token: ${{ secrets.DOCKER_REGISTRY }}
         image-name: gradle-app
         image-tag: latest
-        #dockerfile-path: ${{ env.GITHUB_WORKSPACE }}/Dockerfile
+
+    - name: Deploy Docker by SSH
+      uses: appleboy/ssh-action@v0.1.4
+      with:
+        # ssh host
+        host: 54.69.231.212
+        username: ec2-user
+        key: ${{ secrets.SSH_KEY }}
+        # # path of ssh private key
+        # key_path: # optional
+        script: docker ps
+        debug: true
