@@ -25,4 +25,4 @@ jobs:
         github-token: ${{ secrets.DOCKER_REGISTRY }}
         image-name: gradle-app
         image-tag: latest
-        dockerfile-path: ${{ env.GITHUB_WORKSPACE }}/Dockerfile
+        #dockerfile-path: ${{ env.GITHUB_WORKSPACE }}/Dockerfile
