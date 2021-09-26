@@ -22,7 +22,7 @@ jobs:
       uses: TilBlechschmidt/gp-docker-action@v0.2-alpha
       with:
         # GitHub token to push Docker image to GitHub Packages
-        github-token: ${{ DOCKER_REGISTRY }}
+        github-token: ${{ secrets.DOCKER_REGISTRY }}
         image-name: gradle-app
         image-tag: latest
         dockerfile-path: ./Dockerfile
